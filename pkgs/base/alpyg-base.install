@@ -1,0 +1,29 @@
+post_install() {
+	user=$(logname 2>/dev/null || whoami)
+
+	if ! command -v yay >/dev/null 2>&1; then
+		echo "Installing yay"
+		
+		tmpdir=$(mktemp -d)
+		git clone https://aur.archlinux.org/yay.git "$tmpdir/yay"
+		chown -R "$user":"$user" "$tmpdir/yay"
+
+		pushd "$tmpdir/yay" || exit
+		sudo -u "$user" makepkg -si --noconfirm
+		popd || exit
+
+		rm -rf "$tmpdir"
+	else
+		echo "yay already installed, skipping."
+	fi
+
+	systemctl enable --now sshd
+	systemctl enable --now zerotier-one
+	systemctl enable --now avahi-daemon
+}
+
+pre_remove() {
+	systemctl disable --now sshd
+	systemctl disable --now zerotier-one
+	systemctl disable --now avahi-daemon
+}

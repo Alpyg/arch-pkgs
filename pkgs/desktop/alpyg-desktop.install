@@ -1,0 +1,22 @@
+post_install() {
+	systemctl enable lightdm
+
+	if ! getent group autologin >/dev/null; then
+		groupadd -r autologin
+	fi
+
+	user=$(logname 2>/dev/null || whoami)
+	
+	usermod -aG autologin $user 2>/dev/null || true
+
+	sed -i "s/__USERNAME__/$user/" /etc/lightdm/lightdm-gtk-greeter.conf.d/50-autologin.conf
+
+	systemctl --user enable pipewire
+	systemctl --user enable wireplumber
+}
+
+pre_remove() {
+	systemctl disable --now lightdm
+	systemctl --user disable --now pipewire
+	systemctl --user disable --now wireplumber
+}

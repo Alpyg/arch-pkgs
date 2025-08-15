@@ -1,0 +1,22 @@
+post_install() {
+	_apply_config
+}
+
+post_upgrade() {
+	_apply_config
+}
+
+_apply_config() {
+	sed -i "s/__SESSION__/bspwm/" /etc/lightdm/lightdm-gtk-greeter.conf.d/50-autologin.conf
+
+	user=$(logname 2>/dev/null || whoami)
+    home_dir=$(eval echo "~$current_user")
+
+    install -Dm755 /etc/skel/.config/bspwm/bspwmrc "$home_dir/.config/bspwm/bspwmrc"
+    install -Dm644 /etc/skel/.config/sxhkd/sxhkdrc "$home_dir/.config/sxhkd/sxhkdrc"
+    install -Dm644 /etc/skel/.config/dunst/dunstrc "$home_dir/.config/dunst/dunstrc"
+    install -Dm644 /etc/skel/.config/polybar/config.ini "$home_dir/.config/polybar/config.ini"
+
+    chown -R "$user":"$user" "$home_dir/.config"
+
+}

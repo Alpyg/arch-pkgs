@@ -1,0 +1,5 @@
+# Managed by alpyg-base package
+# https://github.com/Alpyg/arch-pkgs/blob/master/pkg/base/sudoers.wheel
+
+%wheel ALL=(ALL) ALL
+Defaults passwd_timeout=0

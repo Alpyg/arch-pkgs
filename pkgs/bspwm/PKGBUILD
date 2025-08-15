@@ -1,0 +1,28 @@
+# Maintainer: Alpyg <arch@alpyg.dev>
+pkgname=alpyg-bspwm
+pkgver=1
+pkgrel=0
+pkgdesc="Desktop configuration for alpyg systems"
+arch=('any')
+url="https://github.com/Alpyg/arch-pkgs"
+license=('MIT')
+groups=('alpyg')
+install=alpyg-bspwm.install
+depends=(
+	'alpyg-desktop'
+
+	'bspwm'
+	'sxhkd'
+	'dmenu'
+	'dunst'
+	'polybar'
+	'flameshot'
+)
+source=(
+	'alpyg-bspwm.install'
+	'bspwmrc'
+	'sxhkdrc'
+	'dunstrc'
+	'polybar.ini'
+)
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')

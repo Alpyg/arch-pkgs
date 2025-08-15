@@ -1,0 +1,48 @@
+# Maintainer: Alpyg <arch@alpyg.dev>
+pkgname=alpyg-base
+pkgver=1
+pkgrel=0
+pkgdesc="Base system configuration for alpyg systems"
+arch=('any')
+url="https://github.com/Alpyg/arch-pkgs"
+license=('MIT')
+groups=('alpyg')
+install=alpyg-base.install
+depends=(
+	# core
+	'base'
+	'base-devel'
+	'linux'
+	'linux-headers'
+	'linux-firmware'
+	'openssh'
+	'avahi'
+
+	# tools
+	'bat'
+	'btop'
+	'dua-cli'
+	'eza'
+	'fd'
+	'fish'
+	'git'
+	'ripgrep-all'
+	'yazi'
+	'zoxide'
+
+	# editor
+	'helix'
+
+	'zerotier-one'
+)
+source=(
+	'sudoers.wheel'
+	'alpyg-base.sh'
+	'alpyg-base.install'
+)
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+
+package() {
+	install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers.d/wheel"
+	install -Dm 0755 alpyg-base.sh "$pkgdir/etc/profile.d/alpyg-base.sh"
+}

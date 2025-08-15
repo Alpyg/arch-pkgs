@@ -1,0 +1,9 @@
+*.pkg.tar.xz
+*.pkg.tar.zst
+*.tar.gz
+*.log
+
+pkgs/**/pkg/
+pkgs/**/src/
+repo/
+build/
