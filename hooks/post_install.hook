@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Install
+Type = Package
+Target = *
+
+[Action]
+Description = post_install hook
+When = PostTransaction
+Exec = /home/alpyg/arch-pkgs/bin/hook.sh post_install

@@ -1,0 +1,91 @@
+#######################################
+# wm
+#######################################
+super + Return
+  kitty
+
+super + d
+  dmenu_run
+
+super + `
+  pkill -USR1 -x sxhkd; pkill -USR1 polybar
+
+#######################################
+# bspwm
+#######################################
+
+# reload bspwm
+super + alt + r
+  bspc wm -r
+
+# close / kill window
+super + {_,shift + }x
+  bspc node -{c,k}
+
+# toggle desktop layout
+super + m
+  bspc desktop -l next
+
+# change window state
+super + {t,shift + t,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+#######################################
+# window manipulation
+#######################################
+
+# focus / swap windows
+super + {_,shift + }{h,j,k,l}
+  bspc node -{f,s} {west,south,north,east}
+
+# switch to last desktop
+super + Tab
+  bspc desktop -f last
+
+# switch desktop / move window to desktop
+super + {_,shift + }{1-9,0}
+  bspc {desktop -f,node -d} focused:'^{1-9,10}'
+
+#######################################
+# preselect
+#######################################
+
+# preselect direction
+super + ctrl + {h,j,k,l}
+  bspc node -p {west,south,north,east}
+
+# preselect ratio
+super + ctrl + {1-9}
+  bspc node -o 0.{1-9}
+
+# cancel preselection
+super + ctrl + space
+  bspc node -p cancel
+
+#######################################
+# move/resize
+#######################################
+
+# resize in direction
+super + alt + {h,j,k,l}
+  bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# resize in opposite direction
+super + alt + shift + {h,j,k,l}
+  bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move window
+super + {Left,Down,Up,Right}
+  bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#######################################
+# other
+#######################################
+
+# screenshot
+super + shift + s
+  flameshot gui -c -s
+
+# media keys
+XF86Audio{Play,Prev,Next}
+  playerctl {play-pause,previous,next}

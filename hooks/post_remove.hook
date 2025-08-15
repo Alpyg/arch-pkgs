@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = post_remove hook
+When = PostTransaction
+Exec = /home/alpyg/arch-pkgs/bin/hook.sh post_remove

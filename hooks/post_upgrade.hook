@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = post_upgrade hook
+When = PostTransaction
+Exec = /home/alpyg/arch-pkgs/bin/hook.sh post_upgrade

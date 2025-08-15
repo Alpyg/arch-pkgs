@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = pre_upgrade hook
+When = PreTransaction
+Exec = /home/alpyg/arch-pkgs/bin/hook.sh pre_upgrade

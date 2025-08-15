@@ -1,0 +1,13 @@
+#!/bin/bash
+
+pre_install() {}
+
+post_install() {}
+
+pre_upgrade() {}
+
+post_upgrade() {}
+
+pre_remove() {}
+
+post_remove() {}

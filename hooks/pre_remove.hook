@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = pre_remove hook
+When = PreTransaction
+Exec = /home/alpyg/arch-pkgs/bin/hook.sh pre_remove
